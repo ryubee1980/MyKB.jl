@@ -45,7 +45,7 @@ Hence, we can estimate the KB integral $G(\infty)$ by the following procedures:
 
 3.In this range, fit the curve (line) $1/R$ vs $G(R)$ by a linear function $B+A/R$. Then we extrapolate the curve to $R\to \infty$, i.e., $G(\infty)=B$.
 
-## Note ##
+**Note**
 The 2nd procedure should be done manually because the range depends on the molecular species as well as the system.
 
 
