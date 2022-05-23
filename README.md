@@ -32,7 +32,7 @@ $$
 with $x=r/2R$. Further, the authors showed that $G(R)$ behaves for large $R$ as
 
 $$
-G(R)\to G(\infty)+A/R,
+G(R)\to G(\infty)+A/R \quad R\to\infty
 $$
 
 where $A$ is some constant and $G(\infty)$ is the KB integral that we wish to compute. 
