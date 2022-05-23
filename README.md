@@ -22,13 +22,17 @@ $$
 G(R)=\frac{1}{V}\int_V\int_V h(r_{12})dr_1dr_2=\int_0^{2R} h(r) w(r) dr,
 $$
 where $R$ is the radius of the sphere. The weight function $w(r)$ is given by
+
 $$
 w(r)=4\pi r^2(1-3x/2+x^3/2)
 $$
+
 with $x=r/2R$. Further, the authors showed that $G(R)$ behaves for large $R$ as
+
 $$
 G(R)\to G(\infty)+A/R,
 $$
+
 where $A$ is some constant and $G(\infty)$ is the KB integral that we wish to compute. 
 
 Hence, we can estimate the KB integral $G(\infty)$ by the following:
