@@ -36,11 +36,15 @@ end
 """
 Plot RDF from data file.
 
-    plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0)
+    plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0,gmin=0,gmax=3.0)
 """
-function plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0)
+function plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0,gmin=-1.0,gmax=-2.0)
     g=in_RDF(file)
-    plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax))
+    if(gmin>gmax)
+        plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax))
+    else
+        plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax),ylim=(gmin,gmax))
+    end
 end
 
 
