@@ -74,6 +74,8 @@ end
 
 """
 Plot ``1/R`` vs ``G(R)`` in the range ``xmin < 1/R < xmax``.
+
+plot_GR(file;shift=0.0,xmin=0,xmax=4)
 """
 function plot_GR(file;shift=0.0,xmin=0,xmax=4)
     GR=comp_GR(file;shift=shift)
