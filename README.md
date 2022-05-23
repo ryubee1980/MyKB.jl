@@ -79,36 +79,37 @@ julia> in_RDF(fn)
 
 ### plot_RDF
 Plot the (shifted) RDF from the data file in the range rmin $< r <$ rmax. The default values of rmin and rmax are 0 and 3, respectively.
+By default, the $g$-range is not specified, but one can set it by the optional variables gmin and gmax.
 ```sh
-julia> plot_RDF(fn,shift=0.05,rmin=0.1,rmax=2.5)
+julia> plot_RDF(fn;shift=0.05,rmin=0.1,rmax=2.5,gmin=0.1,gmax=2.3)
 ```
 
 ### comp_GR
 Compute the function $G(R)$ from the data file of RDF:
 ```sh
-julia> comp_GR(fn,shift=0.05)
+julia> comp_GR(fn;shift=0.05)
 ```
 
 ### plot_GR
 Plot $1/R$ vs $G(R)$ from the data file of RDF in the range xmin $< 1/R$ < xmax. The default values of xmin and xmax are 0 and 4, respectively.
 ```sh
-julia> plot_GR(fn,shift=0.05, xmin=0.0, xmax=3.0)
+julia> plot_GR(fn;shift=0.05, xmin=0.0, xmax=3.0)
 ```
 
 ### fit_GR
 Perform fitting $1/R$ vs $G(R)$ by a linear function $B+A/R$ in the range recRmin $< 1/R <$ recRmax.
 ```sh
-julia> fit_GR(fn,recRmin,recRmax,shift=0.05)
+julia> fit_GR(fn,recRmin,recRmax;shift=0.05)
 ```
 
 ### eval_KB
 Evaluate KB integral.
 ```sh
-julia> eval_KB(fn,recRmin,recRmax,shift=0.05)
+julia> eval_KB(fn,recRmin,recRmax;shift=0.05)
 ```
 
 ### plot_GR_fit
 Plot $1/R$ vs $G(R)$ together with the fitting line. The plot range is xmin $< 1/R <$ xmax.
 ```sh
-julia> fit_GR_fit(fn,recRmin,recRmax,shift=0.05,xmin=0.0,xmax=3.0)
+julia> fit_GR_fit(fn,recRmin,recRmax;shift=0.05,xmin=0.0,xmax=3.0)
 ```

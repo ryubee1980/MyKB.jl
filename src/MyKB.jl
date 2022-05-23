@@ -34,7 +34,7 @@ function in_RDF(file)
 end
 
 """
-Plot RDF from data file.
+Plot RDF from data file. By default, the ``g``-range is not specified, while ``r``-range is specified as ``rmin=0.0`` and ``rmax=3.0``.
 
     plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0,gmin=0,gmax=3.0)
 """
