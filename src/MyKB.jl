@@ -33,6 +33,17 @@ function in_RDF(file)
     hcat(r,g)
 end
 
+"""
+Plot RDF from data file.
+
+    plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0)
+"""
+function plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0)
+    g=in_RDF(file)
+    plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax))
+end
+
+
 
 """
 Compute the pair correlation function ``h=g-1`` where ``g`` is the RDF.

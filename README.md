@@ -66,4 +66,19 @@ $$
 $$
 
 ## Usage
-It is convenient to define the 
+It is convenient to define the string variable for the input RDF file:
+```sh
+julia> fn="rdf.xvg"
+```
+
+### in_RDF
+Read the input file and returns an $N\times 2$ array g[,] such that g[:,1] gives the values of $r$ and g[:,2] the corresponding values of RDF $g(r)$.
+```sh
+julia> in_RDF(fn)
+```
+
+### plot_RDF
+Plot the (shifted) RDF from the data file in the range $r_{\rm min} < r <r_{\rm max}$. The default values of $r_{\rm min}$ and $r_{\rm max}$ are 0 and 3, respectively.
+```sh
+julia> plot_RDF(fn,shift=0.052,rmin=0.1,rmax=2.5)
+```
