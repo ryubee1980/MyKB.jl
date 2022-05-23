@@ -41,10 +41,11 @@ Plot RDF from data file. By default, the ``g``-range is not specified, while ``r
 function plot_RDF(file;shift=0.0,rmin=0.0,rmax=3.0,gmin=-1.0,gmax=-2.0)
     g=in_RDF(file)
     if(gmin>gmax)
-        plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax))
+        p=plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax))
     else
-        plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax),ylim=(gmin,gmax))
+        p=plot(g[:,1],g[:,2] .+ shift,xlabel="\$r\$",ylabel="\$g(r)\$", xlim=(rmin,rmax),ylim=(gmin,gmax))
     end
+    p
 end
 
 
@@ -143,14 +144,15 @@ Plot ``1/R`` vs ``G(R)`` together with the fitting line in the range ``xmin < 1/
 """
 function plot_GR_fit(file,recRmin,recRmax;shift=0.0,xmin=0,xmax=4,show_range=1)
     GR=comp_GR(file;shift=shift)
-    plot((@. 1.0/GR[:,1]), GR[:,2], xlim=(xmin,xmax), xlabel="\$1/R\$ [nm\$^{-1}\$]", label="\$G(R)\$",lw=3)
+    p=plot((@. 1.0/GR[:,1]), GR[:,2], xlim=(xmin,xmax), xlabel="\$1/R\$ [nm\$^{-1}\$]", label="\$G(R)\$",lw=3)
     w=fit_GR(file,recRmin,recRmax,shift=shift)
     x=0:0.1:recRmax+0.5
-    plot!(x,(@. w[1]+w[2]*x),ls=:dash,label="fitting line")
+    plot!(p,x,(@. w[1]+w[2]*x),ls=:dash,label="fitting line")
     if(show_range==1)
         bound=[[recRmin,recRmax] [w[1]+w[2]*recRmin,w[1]+w[2]*recRmax]]
-        scatter!(bound[:,1],bound[:,2],label="fit range",ms=6)
+        scatter!(p,bound[:,1],bound[:,2],label="fit range",ms=6)
     end
+    p
 end
 
 end#module
