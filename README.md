@@ -37,11 +37,17 @@ $$
 
 where $A$ is some constant and $G(\infty)$ is the KB integral that we wish to compute. 
 
-Hence, we can estimate the KB integral $G(\infty)$ by the following procedure:
+Hence, we can estimate the KB integral $G(\infty)$ by the following procedures:
 
 1.Compute $G(R)$ from the RDF data for sufficiently large $R$'s. In simulations, RDF data is obtained for $r<r_{\rm max}$ with $r_{\rm max}$ being comparable with the box size of the simulation. Then one should note $R$ must be smaller than $r_{\rm max}/2$.
 
-2.Find the $R$-range where $G(R)$ is linear in $1/R$. In this range, fit the curve (line) $1/R$ vs $G(R)$ by a linear function $B+A/R$. Then we extrapolate the curve to $R\to \infty$, i.e., $G(\infty)=B$.
+2.Find the $R$-range where $G(R)$ is linear in $1/R$. 
+
+3.In this range, fit the curve (line) $1/R$ vs $G(R)$ by a linear function $B+A/R$. Then we extrapolate the curve to $R\to \infty$, i.e., $G(\infty)=B$.
+
+## Note ##
+The 2nd procedure should be done manually because the range depends on the molecular species as well as the system.
+
 
 ## Radial distribution function (RDF) data
 The RDF data should given by the distance values $r$ [nm] and the corresponding RDF $g(r)$ separated by a space. Lines that begin with #, @, or " are ignored.
@@ -60,4 +66,4 @@ $$
 $$
 
 ## Usage
-
+It is convenient to define the 
