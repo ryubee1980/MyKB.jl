@@ -17,7 +17,7 @@ An efficient extrapolation scheme has been proposed by
 
 P. Krüger, D. Bedeaux, S. Kjelstrup, T. Vlugt, J.-M. Simon, J. Phys. Chem. Lett. vol.4, (2013) 235.
 
-The authors showed the double integral of pair correlation $h(r_{12})=g(r_{12})-1$ within a volume $V$ of a spherical shape is given by
+The authors showed the double integral of pair correlation function (PCF) $h(r_{12})=g(r_{12})-1$ within a volume $V$ of a spherical shape is given by
 
 $$
 G(R)=\frac{1}{V}\int_V\int_V h(r_{12})dr_1dr_2=\int_0^{2R} h(r) w(r) dr,
@@ -44,3 +44,19 @@ Hence, we can estimate the KB integral $G(\infty)$ by the following:
 
 ## Radial distribution function (RDF) data
 The RDF data should given by the distance values $r$ [nm] and the corresponding RDF $g(r)$ separated by a space. Lines that begin with #, @, or " are ignored.
+
+## Shift of RDF
+It is known that RDFs (resp. PCFs) obtained for finite systems often do not exactly approach $1$ (resp. $0$) as $r\to r_{\rm max}$. This can be problematic when computing KB integrals. To avoid this, in each function of this package, an optional variable "shift" is introduced (its default value is 0). For finite value, the PCF $h(r)$ is simply shifted as
+
+$$
+h(r)\to h(r)+{\rm shift}
+$$
+
+for all $r$. Hence, if the original PCF approaches, for example, $0.95$, then one may set
+
+$$
+{\rm shift}=0.05.
+$$
+
+## Usage
+
