@@ -18,9 +18,11 @@ An efficient extrapolation scheme has been proposed by
 P. Krüger, D. Bedeaux, S. Kjelstrup, T. Vlugt, J.-M. Simon, J. Phys. Chem. Lett. vol.4, (2013) 235.
 
 The authors showed the double integral of pair correlation $h(r_{12})=g(r_{12})-1$ within a volume $V$ of a spherical shape is given by
+
 $$
 G(R)=\frac{1}{V}\int_V\int_V h(r_{12})dr_1dr_2=\int_0^{2R} h(r) w(r) dr,
 $$
+
 where $R$ is the radius of the sphere. The weight function $w(r)$ is given by
 
 $$
