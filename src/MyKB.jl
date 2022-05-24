@@ -147,7 +147,7 @@ function plot_GR_fit(file,recRmin,recRmax;shift=0.0,xmin=0,xmax=4,show_range=1)
     p=plot((@. 1.0/GR[:,1]), GR[:,2], xlim=(xmin,xmax), xlabel="\$1/R\$ [nm\$^{-1}\$]", label="\$G(R)\$",lw=3)
     w=fit_GR(file,recRmin,recRmax,shift=shift)
     x=0:0.1:recRmax+0.5
-    plot!(p,x,(@. w[1]+w[2]*x),ls=:dash,label="fitting line")
+    plot!(p,x,(@. w[1]+w[2]*x),ls=:dash,label="$(w[1])\$+A/R\$")
     if(show_range==1)
         bound=[[recRmin,recRmax] [w[1]+w[2]*recRmin,w[1]+w[2]*recRmax]]
         scatter!(p,bound[:,1],bound[:,2],label="fit range",ms=6)
