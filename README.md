@@ -1,5 +1,5 @@
 # MyKB
-Package for computing Kirkwood-Buff(KB) integral from radial distribution function. 
+Package for computing Kirkwood-Buff(KB) integral from a data file of radial distribution function. 
 
 Copyright (c) 2021 Ryuichi Okamoto <ryubee@gmail.com>
 License: https://opensource.org/licenses/MIT
