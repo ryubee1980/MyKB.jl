@@ -39,7 +39,7 @@ where $A$ is some constant and $G(\infty)$ is the KB integral that we wish to co
 
 Hence, we can estimate the KB integral $G(\infty)$ by the following procedures:
 
-1.Compute $G(R)$ from the RDF data for sufficiently large $R$'s. In simulations, RDF data is obtained for $r < r_{\rm max}$ with $r_{\rm max}$ being comparable with the box size of the simulation. Then one should note $R$ must be smaller than $r_{\rm max}/2$.
+1.Compute $G(R)$ from the RDF data for sufficiently large $R$'s. In simulations, RDF data is obtained for $r < r_{\rm max}$ with $r_{\rm max}$ being comparable with the box size of the simulation. Then one should note that $G(R)$ can be computed only for finite $R$ such that $R < r_{\rm max}/2$.
 
 2.Find the $R$-range where $G(R)$ is linear in $1/R$. 
 
