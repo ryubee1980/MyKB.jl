@@ -48,6 +48,14 @@ Hence, we can estimate the KB integral $G(\infty)$ by the following procedures:
 **Note**
 The 2nd procedure should be done manually because the range depends on the molecular species as well as the physical conditions of the system. On can use "plot_GR" to plot $1/R$ vs $G(R)$.
 
+Instead of doing 2 and 3 in the above, one may also use the following:
+
+$$
+RG(R)\to RG(\infty)+A \quad (R\to\infty).
+$$
+
+One may plot $R$ vs $R\times G(R)$ and find the $R$-range where $RG(R)$ grows linearly with $R$. Then fit the line in the range by a linear function $BR+A$. The slope $B$ gives the KB integral, $G(\infty)=B$.
+
 
 ## Radial distribution function (RDF) data
 The RDF data should given by the distance values $r$ [nm] and the corresponding RDF $g(r)$ separated by a space. Lines that begin with #, @, or " are ignored.
@@ -96,6 +104,7 @@ Plot $1/R$ vs $G(R)$ from the data file of RDF in the range xmin $< 1/R$ < xmax.
 julia> plot_GR(fn;shift=0.05, xmin=0.0, xmax=3.0)
 ```
 
+
 ### fit_GR
 Perform fitting $1/R$ vs $G(R)$ by a linear function $B+A/R$ in the range recRmin $< 1/R <$ recRmax.
 ```sh
@@ -112,4 +121,31 @@ julia> eval_KB(fn,recRmin,recRmax;shift=0.05)
 Plot $1/R$ vs $G(R)$ together with the fitting line. The plot range is xmin $< 1/R <$ xmax.
 ```sh
 julia> fit_GR_fit(fn,recRmin,recRmax;shift=0.05,xmin=0.0,xmax=3.0)
+```
+
+The modified methods using the fit of $R$ vs $R\times G(R)$ are implemented by the following functions.
+
+### plot_RGR
+Plot $R$ vs $R\times G(R)$ from the data file of RDF in the range xmin $< R$ < xmax. The default values of xmin and xmax are 0 and 3, respectively.
+```sh
+julia> plot_RGR(fn;shift=0.05, xmin=0.0, xmax=3.0)
+```
+
+### fit_RGR
+Perform fitting $R$ vs $R\times G(R)$ by a linear function $A+BR$ in the range Rmin $< R <$ Rmax.
+```sh
+julia> fit_RGR(fn,Rmin,Rmax;shift=0.05)
+```
+
+### eval_KB
+Evaluate KB integral using fig_RGR.
+```sh
+julia> eval_KB2(fn,Rmin,Rmax;shift=0.05)
+```
+
+
+### plot_RGR_fit
+Plot $R$ vs $R\times G(R)$ together with the fitting line evaluated by fit_RGR. The plot range is xmin $< R <$ xmax.
+```sh
+julia> fit_RGR_fit(fn,Rmin,Rmax;shift=0.05,xmin=0.0,xmax=3.0)
 ```
