@@ -106,6 +106,17 @@ function plot_GR(file;shift=0.0,xmin=0,xmax=4)
 end
 
 
+"""
+Plot ``R`` vs ``R*G(R)`` in the range ``xmin < R < xmax``.
+
+    plot_RGR(file;shift=0.0,xmin=0,xmax=3)
+"""
+function plot_RGR(file;shift=0.0,xmin=0,xmax=3)
+    GR=comp_GR(file;shift=shift)
+    plot((GR[:,1]), GR[:,1] .* GR[:,2], xlim=(xmin,xmax), xlabel="\$R\$  [nm]", ylabel="\$RG(R)\$", label=:none)
+end
+
+
 
 """
 Perform fitting ``1/R`` vs ``G(R)`` by a linear function ``w[1]+(1/R)*w[2]`` in the range ``recRmin < 1/R < recRmax``. The KB integral in the inifinite volume ``G(∞ )`` is given by the extrapolation, i.e.,  ``w[1]``.
@@ -128,6 +139,26 @@ end
 
 
 """
+Perform fitting ``R`` vs ``R*G(R)`` by a linear function ``R*w[2]+w[1]`` in the range ``Rmin < R < Rmax``. The KB integral in the inifinite volume ``G(∞ )`` is given by the extrapolation, i.e.,  ``w[2]``.
+
+    fit_GR(file,recRmin,recRmax;shift=0.0)
+"""
+function fit_RGR(file,Rmin,Rmax;shift=0.0)
+    GR=comp_GR(file,shift=shift)
+    x=Array{Float64}(undef,0)
+    y=similar(x)
+    for i in 1:length(GR[:,1])
+        if(Rmin<GR[i,1]<Rmax)
+            push!(x,GR[i,1])
+            push!(y,GR[i,1]*GR[i,2])
+        end
+    end
+    X=x.^(0:1)'
+    w=X\y
+end
+
+
+"""
 Evaluate KB integral using fit_GR.
 
     eval_KB(file,recRmin,recRmax;shift=0.0)
@@ -135,6 +166,17 @@ Evaluate KB integral using fit_GR.
 function eval_KB(file,recRmin,recRmax;shift=0.0)
     w=fit_GR(file,recRmin,recRmax,shift=shift)
     print("G(∞ )=", w[1], " /nm^3")
+end
+
+
+"""
+Evaluate KB integral using fit_RGR.
+
+    eval_KB2(file,Rmin,Rmax;shift=0.0)
+"""
+function eval_KB2(file,Rmin,Rmax;shift=0.0)
+    w=fit_RGR(file,Rmin,Rmax,shift=shift)
+    print("G(∞ )=", w[2], " /nm^3")
 end
 
 
@@ -151,6 +193,24 @@ function plot_GR_fit(file,recRmin,recRmax;shift=0.0,xmin=0,xmax=4,show_range=1)
     plot!(p,x,(@. w[1]+w[2]*x),ls=:dash,label="$(w[1])\$+A/R\$")
     if(show_range==1)
         bound=[[recRmin,recRmax] [w[1]+w[2]*recRmin,w[1]+w[2]*recRmax]]
+        scatter!(p,bound[:,1],bound[:,2],label="fit range",ms=6)
+    end
+    p
+end
+
+"""
+Plot ``R`` vs ``R*G(R)`` together with the fitting line in the range ``xmin < R < max``.
+
+    plot_RGR_fit(file,Rmin,Rmax;shift=0.0,xmin=0,xmax=3,show_range=1)
+"""
+function plot_RGR_fit(file,Rmin,Rmax;shift=0.0,xmin=0,xmax=3,show_range=1)
+    GR=comp_GR(file;shift=shift)
+    p=plot((GR[:,1]), GR[:,1] .* GR[:,2], xlim=(xmin,xmax), xlabel="\$R\$ [nm]", label="\$RG(R)\$",lw=3)
+    w=fit_RGR(file,Rmin,Rmax,shift=shift)
+    x=Rmin:0.1:Rmax+0.5
+    plot!(p,x,(@. w[1]+w[2]*x),ls=:dash,label="\$B+\$$(w[1])\$R\$")
+    if(show_range==1)
+        bound=[[Rmin,Rmax] [w[1]+w[2]*Rmin,w[1]+w[2]*Rmax]]
         scatter!(p,bound[:,1],bound[:,2],label="fit range",ms=6)
     end
     p
