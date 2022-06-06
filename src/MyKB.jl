@@ -205,10 +205,10 @@ Plot ``R`` vs ``R*G(R)`` together with the fitting line in the range ``xmin < R 
 """
 function plot_RGR_fit(file,Rmin,Rmax;shift=0.0,xmin=0,xmax=3,show_range=1)
     GR=comp_GR(file;shift=shift)
-    p=plot((GR[:,1]), GR[:,1] .* GR[:,2], xlim=(xmin,xmax), xlabel="\$R\$ [nm]", label="\$RG(R)\$",lw=3)
+    p=plot((GR[:,1]), GR[:,1] .* GR[:,2], xlim=(xmin,xmax), xlabel="\$R\$ [nm]", label="\$RG(R)\$",lw=3,legend=:bottomright)
     w=fit_RGR(file,Rmin,Rmax,shift=shift)
     x=Rmin:0.1:Rmax+0.5
-    plot!(p,x,(@. w[1]+w[2]*x),ls=:dash,label="\$B+\$$(w[1])\$R\$")
+    plot!(p,x,(@. w[1]+w[2]*x),ls=:dash,label="\$B+\$$(w[2])\$R\$")
     if(show_range==1)
         bound=[[Rmin,Rmax] [w[1]+w[2]*Rmin,w[1]+w[2]*Rmax]]
         scatter!(p,bound[:,1],bound[:,2],label="fit range",ms=6)
