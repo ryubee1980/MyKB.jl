@@ -99,14 +99,14 @@ julia> comp_GR(fn;shift=0.05)
 ```
 
 ### plot_GR
-Plot $1/R$ vs $G(R)$ from the data file of RDF in the range . The default values of xmin and xmax are 0 and 4, respectively.
+Plot $1/R$ vs $G(R)$ from the data file of RDF in the range xmin $<1/R<$ xmax. The default values of xmin and xmax are 0 and 4, respectively.
 ```sh
 julia> plot_GR(fn;shift=0.05, xmin=0.0, xmax=3.0)
 ```
 
 
 ### fit_GR
-Perform fitting $1/R$ vs $G(R)$ by a linear function $B+A/R$ in the range recRmin $< 1/R <$ recRmax.
+Perform fitting $1/R$ vs $G(R)$ by a linear function $B+A/R$ in the range recRmin $<1/R<$ recRmax.
 ```sh
 julia> fit_GR(fn,recRmin,recRmax;shift=0.05)
 ```
