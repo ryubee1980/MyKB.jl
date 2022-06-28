@@ -146,6 +146,8 @@ julia> eval_KB2(fn,Rmin,Rmax;shift=0.05)
 
 ### plot_RGR_fit
 Plot $R$ vs $R\times G(R)$ together with the fitting line evaluated by fit_RGR. The plot range is xmin < $R$<xmax.
+
+$$ 1\leq x$$
 ```sh
 julia> fit_RGR_fit(fn,Rmin,Rmax;shift=0.05,xmin=0.0,xmax=3.0)
 ```
