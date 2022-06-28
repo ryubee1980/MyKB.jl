@@ -126,13 +126,13 @@ julia> fit_GR_fit(fn,recRmin,recRmax;shift=0.05,xmin=0.0,xmax=3.0)
 The modified methods using the fit of $R$ vs $R\times G(R)$ are implemented by the following functions.
 
 ### plot_RGR
-Plot $R$ vs $R\times G(R)$ from the data file of RDF in the range xmin $< R$ < xmax. The default values of xmin and xmax are 0 and 3, respectively.
+Plot $R$ vs $R\times G(R)$ from the data file of RDF in the range xmin$<R<$ xmax. The default values of xmin and xmax are 0 and 3, respectively.
 ```sh
 julia> plot_RGR(fn;shift=0.05, xmin=0.0, xmax=3.0)
 ```
 
 ### fit_RGR
-Perform fitting $R$ vs $R\times G(R)$ by a linear function $A+BR$ in the range Rmin $< R <$ Rmax.
+Perform fitting $R$ vs $R\times G(R)$ by a linear function $A+BR$ in the range Rmin$<R<$ Rmax.
 ```sh
 julia> fit_RGR(fn,Rmin,Rmax;shift=0.05)
 ```
