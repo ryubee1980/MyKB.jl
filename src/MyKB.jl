@@ -22,11 +22,13 @@ function in_RDF(file)
     while !eof(fn)
         line=readline(fn)
         s=split(line)
-        if(s[1][1]!='#' && s[1][1]!='@' && s[1][1]!='"')
-            s1=parse(Float64,s[1])
-            s2=parse(Float64,s[2])
-            r=push!(r,s1)
-            g=push!(g,s2)
+        if(sizeof(s)!=0)
+            if(s[1][1]!='#' && s[1][1]!='@' && s[1][1]!='"')
+                s1=parse(Float64,s[1])
+                s2=parse(Float64,s[2])
+                r=push!(r,s1)
+                g=push!(g,s2)
+            end
         end
     end
     close(fn)
