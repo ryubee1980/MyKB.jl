@@ -167,7 +167,8 @@ Evaluate KB integral using fit_GR.
 """
 function eval_KB(file,recRmin,recRmax;shift=0.0)
     w=fit_GR(file,recRmin,recRmax,shift=shift)
-    print("G(∞ )=", w[1], " /nm^3")
+    println("G(∞ )=", w[1], " /nm^3")
+    w[1]
 end
 
 
@@ -178,7 +179,8 @@ Evaluate KB integral using fit_RGR.
 """
 function eval_KB2(file,Rmin,Rmax;shift=0.0)
     w=fit_RGR(file,Rmin,Rmax,shift=shift)
-    print("G(∞ )=", w[2], " /nm^3")
+    println("G(∞ )=", w[2], " /nm^3")
+    w[1]
 end
 
 
