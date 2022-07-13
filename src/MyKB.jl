@@ -180,7 +180,7 @@ Evaluate KB integral using fit_RGR.
 function eval_KB2(file,Rmin,Rmax;shift=0.0)
     w=fit_RGR(file,Rmin,Rmax,shift=shift)
     println("G(∞ )=", w[2], " /nm^3")
-    w[1]
+    w[2]
 end
 
 
