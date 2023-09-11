@@ -141,7 +141,7 @@ end
 
 
 """
-Perform fitting ``R`` vs ``R*G(R)`` by a linear function ``R*w[2]+w[1]`` in the range ``Rmin < R < Rmax``. The KB integral in the inifinite volume ``G(∞ )`` is given by the extrapolation, i.e.,  ``w[2]``.
+Perform fitting ``R`` vs ``R*G(R)`` by a linear function ``w[1]+R*w[2]`` in the range ``Rmin < R < Rmax``. The KB integral in the inifinite volume ``G(∞ )`` is given by the extrapolation, i.e.,  ``w[2]``.
 
     fit_GR(file,recRmin,recRmax;shift=0.0)
 """
