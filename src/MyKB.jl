@@ -209,8 +209,8 @@ Plot ``R`` vs ``R*G(R)`` together with the fitting line in the range ``xmin < R 
 """
 function plot_RGR_fit(file,Rmin,Rmax;shift=0.0,xmin=0,xmax=3,show_range=1)
     GR=comp_GR(file;shift=shift)
-    GRmin=findmin(GR[:,1] .* GR[:,2])[1]
-    GRmax=findmax(GR[:,1] .* GR[:,2])[1]
+    GRmin=findmin(GR[3:end,1] .* GR[3:end,2])[1]
+    GRmax=findmax(GR[3:end,1] .* GR[3:end,2])[1]
     ymin=GRmin-(GRmax-GRmin)*0.2
     ymax=GRmax+(GRmax-GRmin)*0.2
     p=plot((GR[:,1]), GR[:,1] .* GR[:,2], xlim=(xmin,xmax), ylim=(ymin,ymax),xlabel="\$R\$ [nm]", label="\$RG(R)\$",lw=3,legend=:bottomright)
