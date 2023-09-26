@@ -77,7 +77,7 @@ function comp_GR(file;shift=0.0)
     #dr=h[2,1]-h[1,1]
     RRmax=h[end,1]
     r=h[begin,1]
-    RR=h[begin+1,2]
+    RR=h[begin+1,1]
     x=r/RR
     GR=Array{Float64}(undef, length(h[:,1])-1,2)
     for i in 3:length(h[:,1])
