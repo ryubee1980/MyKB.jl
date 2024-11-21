@@ -78,7 +78,7 @@ julia> fn="rdf.xvg"
 ### in_RDF
 Read the input file and returns an $N\times 2$ array g[,] such that g[:,1] gives the values of $r$ and g[:,2] the corresponding values of RDF $g(r)$.
 ```sh
-julia> in_RDF(fn)
+julia> in_RDF(fn,ave_range=100)
 ```
 
 ### plot_RDF
