@@ -61,17 +61,13 @@ One may plot $R$ vs $R\times G(R)$ and find the $R$-range where $RG(R)$ grows li
 The RDF data should given by the distance values $r$ [nm] and the corresponding RDF $g(r)$ separated by a space. Lines that begin with #, @, or " are ignored.
 
 ## Shift of RDF
-It is known that RDFs (resp. PCFs) obtained for finite systems often do not exactly approach $1$ (resp. $0$) as $r\to r_{\rm max}$. This can be problematic when computing KB integrals. To avoid this, in each function of this package, an optional variable "shift" is introduced (its default value is 0). For finite value, the PCF $h(r)$ is simply shifted as
+It is known that RDFs (resp. PCFs) obtained for finite systems often do not exactly approach $1$ (resp. $0$) as $r\to r_{\rm max}$. This can be problematic when computing KB integrals. To avoid this, in each function of this package, an optional integer variable "ave_range" is introduced (its default value is 0). For finite value, the RDF $g(r)$ is simply normalized as
 
 $$
-h(r)\to h(r)+{\rm shift}
+g(r)\to g(r)/\langle g \rangle _\mathrm{ave_range}
 $$
 
-for all $r$. Hence, if the original PCF approaches, for example, $0.95$, then one may set
-
-$$
-{\rm shift}=0.05.
-$$
+for all $r$. Here $\langle g \rangle _\mathrm{ave_range}$ is the average of $g$ in the range of [end-ave_range:end]. 
 
 ## Usage
 It is convenient to define the string variable for the input RDF file:
@@ -89,38 +85,38 @@ julia> in_RDF(fn)
 Plot the (shifted) RDF from the data file in the range rmin $< r <$ rmax. The default values of rmin and rmax are 0 and 3, respectively.
 By default, the $g$-range is not specified, but one can set it by the optional variables gmin and gmax.
 ```sh
-julia> plot_RDF(fn;shift=0.05,rmin=0.1,rmax=2.5,gmin=0.1,gmax=2.3)
+julia> plot_RDF(fn;ave_range=100,rmin=0.1,rmax=2.5,gmin=0.1,gmax=2.3)
 ```
 
 ### comp_GR
 Compute the function $G(R)$ from the data file of RDF:
 ```sh
-julia> comp_GR(fn;shift=0.05)
+julia> comp_GR(fn;ave_range=100)
 ```
 
 ### plot_GR
 Plot $1/R$ vs $G(R)$ from the data file of RDF in the range xmin$<1/R<$ xmax. The default values of xmin and xmax are 0 and 4, respectively.
 ```sh
-julia> plot_GR(fn;shift=0.05, xmin=0.0, xmax=3.0)
+julia> plot_GR(fn;ave_range=100, xmin=0.0, xmax=3.0)
 ```
 
 
 ### fit_GR
 Perform fitting $1/R$ vs $G(R)$ by a linear function $B+A/R$ in the range recRmin$<1/R<$ recRmax.
 ```sh
-julia> fit_GR(fn,recRmin,recRmax;shift=0.05)
+julia> fit_GR(fn,recRmin,recRmax;ave_range=100)
 ```
 
 ### eval_KB
 Evaluate KB integral.
 ```sh
-julia> eval_KB(fn,recRmin,recRmax;shift=0.05)
+julia> eval_KB(fn,recRmin,recRmax;ave_range=100)
 ```
 
 ### plot_GR_fit
 Plot $1/R$ vs $G(R)$ together with the fitting line. The plot range is xmin$<1/R<$ xmax.
 ```sh
-julia> fit_GR_fit(fn,recRmin,recRmax;shift=0.05,xmin=0.0,xmax=3.0)
+julia> fit_GR_fit(fn,recRmin,recRmax;ave_range=100,xmin=0.0,xmax=3.0)
 ```
 
 The modified methods using the fit of $R$ vs $R\times G(R)$ are implemented by the following functions.
@@ -128,24 +124,24 @@ The modified methods using the fit of $R$ vs $R\times G(R)$ are implemented by t
 ### plot_RGR
 Plot $R$ vs $R\times G(R)$ from the data file of RDF in the range xmin$<R<$xmax. The default values of xmin and xmax are 0 and 3, respectively.
 ```sh
-julia> plot_RGR(fn;shift=0.05, xmin=0.0, xmax=3.0)
+julia> plot_RGR(fn;ave_range=100, xmin=0.0, xmax=3.0)
 ```
 
 ### fit_RGR
 Perform fitting $R$ vs $R\times G(R)$ by a linear function $A+BR$ in the range Rmin$<R<$Rmax.
 ```sh
-julia> fit_RGR(fn,Rmin,Rmax;shift=0.05)
+julia> fit_RGR(fn,Rmin,Rmax;ave_range=100)
 ```
 
 ### eval_KB
 Evaluate KB integral using fig_RGR.
 ```sh
-julia> eval_KB2(fn,Rmin,Rmax;shift=0.05)
+julia> eval_KB2(fn,Rmin,Rmax;ave_range=100)
 ```
 
 
 ### plot_RGR_fit
 Plot $R$ vs $R\times G(R)$ together with the fitting line evaluated by fit_RGR. The plot range is xmin < $R$ < xmax.
 ```sh
-julia> fit_RGR_fit(fn,Rmin,Rmax;shift=0.05,xmin=0.0,xmax=3.0)
+julia> fit_RGR_fit(fn,Rmin,Rmax;ave_range=100,xmin=0.0,xmax=3.0)
 ```
